@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Paskyros tvarkymas{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <div  style="display: flex; align-content: center;">
+            <img src="https://robohash.org/{{ app.user.email }}" class="img-responsive thumbnail">
+            <h3 style="margin-top: 20px ">Sveiki, {{ app.user.FirstName }}</h3>
+        </div>
+        <div class="mt-4">
+            {{ form_start(form) }}
+
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.username) }}
+
+            <button class="btn btn-labeled btn-info"><i class="fa fa-pencil"></i>Atnaujinti</button>
+
+            {{ form_end(form) }}
+            <br>
+            <a class="btn btn-labeled btn-info" href="{{ path('app_changePassword') }}">
+                <span class="btn-label"></span>Pakeisti slaptažodį
+            </a>
+    </div>
+{% endblock %}
+

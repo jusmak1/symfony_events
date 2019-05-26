@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post" class="form-signin">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">Prašome prisijungti</h1>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input id="inputEmail" type="email" value="{{ last_username }}" name="email"  class="form-control" placeholder="El.paštas" required autofocus >
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input id="inputPassword" type="password" name="password"  class="form-control" placeholder="Slaptažodis" required>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+
+        <p><a href="{{ path('app_recover') }}">Pamiršote slaptažodį?</a></p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Prisijungti
+        </button>
+    </div>
+</form>
+{% endblock %}
